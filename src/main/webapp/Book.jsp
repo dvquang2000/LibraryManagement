@@ -9,7 +9,7 @@
 <title>JSP Page</title>
 </head>
 <body>
-	<c:forEach items = "${books}" var ="i">
+	<c:forEach items = "${book}" var ="i">
 	 id: ${i.id}
 	 title: ${i.title}
 	<br>
