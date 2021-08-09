@@ -46,11 +46,11 @@ public class Book {
 		this.published_year = published_year;
 		this.categoryId = categoryId;
 	}
-	/*@Override
+	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return id+" "+title+" "+author+" "+published_year+" "+categoryId+"\n";
-	}*/
+	}
 	
 
 	

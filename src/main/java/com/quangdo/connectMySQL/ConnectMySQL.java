@@ -10,8 +10,5 @@ public class ConnectMySQL {
 			String user = "root";
 			String password = "qtouliver";
 			return DriverManager.getConnection(url, user, password);
-	};
-	
-		
-				
+	};			
 }

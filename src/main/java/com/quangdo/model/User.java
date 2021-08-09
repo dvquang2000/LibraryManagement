@@ -37,4 +37,21 @@ public class User {
 		this.role = role;
 	}
 	
+	public User() {
+		super();
+	}
+	public User(int id, String email, String password, String name, String role) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.name = name;
+		this.role = role;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return id+" "+email+" "+password+" "+name+" "+role;
+	}
+	
 }
