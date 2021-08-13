@@ -9,6 +9,7 @@
 <title>Book List</title>
 </head>
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 		<h1>Displaying Category List</h1>
       <table border ="1" width="500" align="center">
          <tr bgcolor="00FF7F">

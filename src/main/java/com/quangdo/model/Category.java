@@ -20,6 +20,11 @@ public class Category {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Category(String name) {
+		super();
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

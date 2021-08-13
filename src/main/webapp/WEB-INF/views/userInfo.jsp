@@ -8,6 +8,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-
+	<div style="float: right">
+	<a href="${pageContext.request.contextPath}/logout">Log out</a>	
+	</div>
 </body>
 </html>

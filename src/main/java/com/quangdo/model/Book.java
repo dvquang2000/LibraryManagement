@@ -46,6 +46,14 @@ public class Book {
 		this.published_year = published_year;
 		this.categoryId = categoryId;
 	}
+	
+	public Book(int id, String title, String author, String published_year) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.published_year = published_year;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

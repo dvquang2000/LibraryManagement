@@ -9,31 +9,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.quangdo.connectMySQL.ConnectMySQL;
-import com.quangdo.model.Book;
+import com.quangdo.exception.ApplicationException;
+
 import com.quangdo.model.User;
 
 public class UserDao {
 	Connection connection = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	public User loginUser(String email, String password) throws SQLException{
+	public User loginUser(String email,String password) throws SQLException{
 		try {
-			String  sql = "select * from user a where a.email = '"+ email+"'and password ='"+password+"'";
+			String  sql = "select * from user a where a.email = ? and password = ?";
+			//String  sql = "select * from user a where a.email = ?";//'"+ email+"'and password ='"+password+"'";
 			connection = new ConnectMySQL().getConnection();
 			ps= connection.prepareStatement(sql);
-			//ps.setString(1, email);
-			//ps.setString(2, password);
+			ps.setString(1, email);
+			ps.setString(2, password);
 			rs = ps.executeQuery();
 			rs.next();
 			User user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5));
 			return user;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.out.println("Failer");
+			throw new ApplicationException("Email or Password invalid", e);
 		}
-		return null;
+		
 	}
+	public User loginUser(String email) throws SQLException{
+		try {
+			String  sql = "select * from user a where a.email = ?";//'"+ email+"'and password ='"+password+"'";
+			connection = new ConnectMySQL().getConnection();
+			ps= connection.prepareStatement(sql);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			rs.next();
+			User user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5));
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new ApplicationException("Email or Password invalid", e);
+		}
+		
+	}
+	
 	public List<User> getListUser (){
 		try {
 			String query = "select * from user a";
@@ -48,13 +66,14 @@ public class UserDao {
 			return list;
 		} catch (Exception e) {
 			// TODO: handle exception
+			throw new ApplicationException("Get list account error", e);
 		}
-		return null;
+		
 	}
 	public static void main(String[] args) throws SQLException {
 		UserDao userDao = new UserDao();
-		User user = userDao.loginUser("accout1.com","11");
-		//List<User> users = userDao.getListUser();
-		System.out.println(user);
+		//User user = userDao.loginUser("accout1.com","11");
+		List<User> users = userDao.getListUser();
+		System.out.println(users);
 	}
 }

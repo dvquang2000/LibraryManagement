@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import com.quangdo.dao.UserDao;
 import com.quangdo.model.User;
 
@@ -43,8 +45,9 @@ public class LoginServlet extends HttpServlet {
         else {
         	try {
 				 UserDao userDao = new UserDao();
-				 user = userDao.loginUser(email, password);
-				 if(user ==null) {
+				 
+				 user = userDao.loginUser(email);
+				 if(BCrypt.checkpw(password, user.getPassword()) == false) {
 					 hasError = true;
 					 errorString = "Email or Password invalid";
 				 }
@@ -54,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				hasError = true;
-				errorString = e.getMessage();
+				//errorString = e.getMessage();
 			}
         }
         if(hasError) {
@@ -76,7 +79,9 @@ public class LoginServlet extends HttpServlet {
 			else {
 				MyUtils.deletedUserCookie(resp);
 			}
-			resp.sendRedirect(req.getContextPath()+"/home");
+			
+				resp.sendRedirect(req.getContextPath()+"/UserInfor");
+			
 		}
 	}
 }

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.quangdo.connectMySQL.ConnectMySQL;
-import com.quangdo.model.Book;
+import com.quangdo.exception.ApplicationException;
+
 import com.quangdo.model.Category;
 
 public class CategoryDao {
@@ -29,8 +30,9 @@ public class CategoryDao {
 			return list;
 		} catch (Exception e) {
 			// TODO: handle exception
+			throw new ApplicationException("Getting list category has error", e);
 		}
-		return null;
+
 	}
 	
 	public static void main(String[] args) {
