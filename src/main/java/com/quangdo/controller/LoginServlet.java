@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				hasError = true;
-				//errorString = e.getMessage();
+				errorString = e.getMessage();
 			}
         }
         if(hasError) {
